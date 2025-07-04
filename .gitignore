@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.log
+*.zip
+*.db
+*.tmp
+.DS_Store
+*.h5
+*.keras
+*.pkl
+tempCodeRunnerFile.py
+
+# If you don’t want to upload large PDF data folder, uncomment below:
+# data/

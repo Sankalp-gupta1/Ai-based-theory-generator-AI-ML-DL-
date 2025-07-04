@@ -1,0 +1,35 @@
+import pandas as pd
+
+# Step 1: Load the file from your given path
+file_path = r"C:\Users\hp pc\Sales_Data_Analytic_Project\dataset\Sample - Superstore.csv"
+
+# Read the CSV file
+df = pd.read_csv(file_path, encoding='ISO-8859-1')
+
+# Step 2: Strip all column names and remove trailing spaces
+df.columns = df.columns.str.strip()
+
+# Step 3: Drop rows where all values are missing
+df.dropna(how='all', inplace=True)
+
+# Step 4: Fill missing values in important columns (optional: or use df.dropna())
+df.fillna({
+    "Sales": 0,
+    "Quantity": 0,
+    "Discount": 0,
+    "Profit": 0
+}, inplace=True)
+
+# Step 5: Fix date formats
+df["Order Date"] = pd.to_datetime(df["Order Date"], errors='coerce')
+df["Ship Date"] = pd.to_datetime(df["Ship Date"], errors='coerce')
+
+# Step 6: Clean text fields (remove extra spaces)
+text_cols = df.select_dtypes(include='object').columns
+df[text_cols] = df[text_cols].apply(lambda x: x.str.strip())
+
+# Step 7: Save cleaned data to Excel
+output_path = r"C:\Users\hp pc\Sales_Data_Analytic_Project\Excel_Work\Cleaned_Superstore.xlsx"
+df.to_excel(output_path, index=False)
+
+print("✅ Cleaned file saved at:", output_path)
