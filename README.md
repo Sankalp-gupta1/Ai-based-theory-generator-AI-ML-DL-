@@ -1,150 +1,50 @@
-# AI-Based PDF Theory Generator
+# AI-Based Theory Generator
 
-An experimental NLP pipeline for **extracting knowledge from PDFs, cleaning academic text, generating semantic embeddings, retrieving relevant passages, and generating theory-style text with a transformer model**.
+An experimental NLP project for extracting knowledge from source documents, retrieving relevant passages, and creating theory-style drafts.
 
-## Overview
+## Live no-key demo
 
-The repository explores multiple stages of an academic text-processing workflow:
+**https://theoryforge-sankalp.vercel.app/**
 
-```text
-PDF documents
-     │
-     ▼
-Text extraction
-     │
-     ▼
-Text cleaning / paragraph structuring
-     │
-     ▼
-Sentence embeddings
-     │
-     ├── Semantic retrieval
-     │
-     └── Saved embedding/model artifacts
-     │
-     ▼
-Transformer-based theory generation
-```
+The repository includes two modes:
 
-## Core Components
+### Original experimental pipeline
 
-### PDF Ingestion
+- PDF/text ingestion
+- text preprocessing
+- sentence-transformer embeddings
+- semantic retrieval
+- GPT-2 theory generation
+- PyTorch / Hugging Face
 
-`src/ingest.py.py` uses **PyMuPDF** to extract text from PDFs in the `data/` directory and combine the content into a text file.
+### Hosted TheoryForge mode
 
-### Preprocessing
+The `web/` app is intentionally lightweight and transparent.
 
-`src/preprocess.py` cleans spacing and restructures extracted text into paragraph-like chunks.
+It:
+- accepts pasted notes or a text file,
+- scores source sentences against a topic,
+- retrieves the most relevant evidence,
+- assembles a structured draft,
+- shows the retrieved source evidence,
+- needs no private API key.
 
-### Semantic Embeddings
+The hosted mode is extractive/deterministic and does **not** pretend to run the heavier GPT-2 pipeline in Vercel.
 
-`src/embed.py` uses `all-MiniLM-L6-v2` from Sentence Transformers to create paragraph embeddings and stores the embedding output for later retrieval.
-
-### Semantic Retrieval
-
-`src/infer.py` embeds a user question, computes cosine similarity against document paragraphs, and returns the most relevant passages.
-
-### Theory Generation
-
-`src/theory_genrator.py` uses GPT-2 through Hugging Face Transformers to generate theory-style text from a topic prompt.
-
-## Tech Stack
-
-- Python
-- PyMuPDF
-- PyTorch
-- Hugging Face Transformers
-- Sentence Transformers
-- GPT-2
-- NumPy / semantic similarity utilities
-
-## Repository Structure
-
-```text
-Ai-based-theory-generator-AI-ML-DL-/
-├── data/
-├── docs/
-├── model/
-├── src/
-│   ├── ingest.py.py
-│   ├── preprocess.py
-│   ├── embed.py
-│   ├── infer.py
-│   ├── theory_genrator.py
-│   └── simulate.py
-├── static/
-├── templates/
-├── time_machine_simulator.py
-├── time_machine_simulator1.py
-└── README.md
-```
-
-## Installation
-
-Create a virtual environment and install the main dependencies:
+## Run the hosted version locally
 
 ```bash
-python -m venv .venv
+cd web
+python -m http.server 8000
 ```
 
-Windows:
+Open `http://localhost:8000`.
 
-```bash
-.venv\Scripts\activate
-```
+## Run the original Python work
 
-macOS / Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-Install packages:
-
-```bash
-pip install pymupdf torch transformers sentence-transformers
-```
-
-## Example Pipeline
-
-Place one or more PDF files inside `data/`.
-
-### 1. Extract PDF text
-
-```bash
-python src/ingest.py.py
-```
-
-### 2. Clean extracted text
-
-```bash
-python src/preprocess.py
-```
-
-### 3. Generate semantic embeddings
-
-```bash
-python src/embed.py
-```
-
-### 4. Ask semantic questions
-
-```bash
-python src/infer.py
-```
-
-### 5. Generate theory from a topic
-
-```bash
-python src/theory_genrator.py
-```
-
-## Notes
-
-This repository is an experimental educational prototype. GPT-2 and semantic retrieval can produce incomplete or incorrect outputs, so generated academic content should be verified before use.
+Install the project dependencies used by the scripts in `src/` and run the ingestion / embedding / inference stages from there.
 
 ## Author
 
-**Sankalp Gupta**
-
+Sankalp Gupta  
 GitHub: https://github.com/Sankalp-gupta1
