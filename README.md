@@ -1,75 +1,86 @@
-# AI-Based Theory Generator
+# AI-Based Theory Generator — TheoryForge
 
-## Live app
+An experimental NLP project for extracting useful evidence from source notes and creating theory-style drafts.
+
+## Live demo
 
 **https://theoryforge-sankalp.vercel.app/**
 
-A public no-key demo is now available in `web/`.
+The repository contains two modes:
 
-The original experimental project uses sentence embeddings and GPT-2. The hosted version avoids pretending that a heavyweight model is running on a static server. Instead, it provides a transparent retrieval workflow:
+1. the original Python / transformer experiment,
+2. a lightweight public TheoryForge demo.
 
-1. paste or load source notes,
+## Live TheoryForge mode
+
+The deployed app lets you:
+
+1. paste source notes or load a text file,
 2. enter a topic,
 3. split the source into sentences,
-4. rank source sentences for topic relevance,
-5. assemble an extractive theory-style draft,
-6. show the retrieved evidence.
+4. rank sentences for relevance,
+5. retrieve the strongest evidence,
+6. assemble a structured theory-style draft,
+7. inspect the evidence used in the draft.
 
-The original GPT-2 / sentence-transformer code remains in the repository for local experimentation.
+The hosted mode is deterministic and extractive.
 
-### Run the web demo locally
+It does **not** pretend that a heavyweight GPT-2 model is running on a static server.
 
-```bash
-cd web
-python -m http.server 8000
-```
+## Original experimental pipeline
 
----
+The original project explores:
 
-An experimental NLP project for extracting knowledge from source documents, retrieving relevant passages, and creating theory-style drafts.
+- PDF/text ingestion,
+- text cleaning,
+- sentence-transformer embeddings,
+- semantic retrieval,
+- GPT-2 text generation,
+- PyTorch,
+- Hugging Face Transformers.
 
-## Live no-key demo
+That code remains in the repository for local experimentation.
 
-
-The repository includes two modes:
-
-### Original experimental pipeline
-
-- PDF/text ingestion
-- text preprocessing
-- sentence-transformer embeddings
-- semantic retrieval
-- GPT-2 theory generation
-- PyTorch / Hugging Face
-
-### Hosted TheoryForge mode
-
-The `web/` app is intentionally lightweight and transparent.
-
-It:
-- accepts pasted notes or a text file,
-- scores source sentences against a topic,
-- retrieves the most relevant evidence,
-- assembles a structured draft,
-- shows the retrieved source evidence,
-- needs no private API key.
-
-The hosted mode is extractive/deterministic and does **not** pretend to run the heavier GPT-2 pipeline in Vercel.
-
-## Run the hosted version locally
+## Run the live-style demo locally
 
 ```bash
 cd web
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000`.
+Open:
 
-## Run the original Python work
+```text
+http://localhost:8000
+```
 
-Install the project dependencies used by the scripts in `src/` and run the ingestion / embedding / inference stages from there.
+## Run the Python work
+
+Install the dependencies used by the scripts in `src/`.
+
+Typical packages include:
+
+- PyMuPDF
+- PyTorch
+- Transformers
+- Sentence Transformers
+
+Then run the ingestion, embedding and generation scripts from the source folders.
+
+## Why the hosted mode is lighter
+
+Transformer models can require large downloads and substantial memory.
+
+The public demo is designed to:
+
+- open quickly,
+- need no secret key,
+- show the retrieval workflow clearly,
+- avoid pretending a large local model is running when it is not.
 
 ## Author
 
-Sankalp Gupta  
-GitHub: https://github.com/Sankalp-gupta1
+**Sankalp Gupta**
+
+- GitHub: https://github.com/Sankalp-gupta1
+- LinkedIn: https://www.linkedin.com/in/sankalp-gupta-rishi-8617302b0/
