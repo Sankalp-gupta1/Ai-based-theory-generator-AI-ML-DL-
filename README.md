@@ -1,5 +1,31 @@
 # AI-Based Theory Generator
 
+## Live app
+
+**https://ai-theory-generator.vercel.app/**
+
+A public no-key demo is now available in `web/`.
+
+The original experimental project uses sentence embeddings and GPT-2. The hosted version avoids pretending that a heavyweight model is running on a static server. Instead, it provides a transparent retrieval workflow:
+
+1. paste or load source notes,
+2. enter a topic,
+3. split the source into sentences,
+4. rank source sentences for topic relevance,
+5. assemble an extractive theory-style draft,
+6. show the retrieved evidence.
+
+The original GPT-2 / sentence-transformer code remains in the repository for local experimentation.
+
+### Run the web demo locally
+
+```bash
+cd web
+python -m http.server 8000
+```
+
+---
+
 An experimental NLP project for extracting knowledge from source documents, retrieving relevant passages, and creating theory-style drafts.
 
 ## Live no-key demo
