@@ -2,7 +2,7 @@
 
 ## Live app
 
-**https://ai-theory-generator.vercel.app/**
+**https://theoryforge-sankalp.vercel.app/**
 
 A public no-key demo is now available in `web/`.
 
@@ -30,7 +30,6 @@ An experimental NLP project for extracting knowledge from source documents, retr
 
 ## Live no-key demo
 
-**https://theoryforge-sankalp.vercel.app/**
 
 The repository includes two modes:
 
